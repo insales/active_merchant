@@ -34,7 +34,8 @@ module ActiveMerchant #:nodoc:
 
         def add_field(name, value)
           return if name.blank? || value.blank?
-          @fields[name.to_s] = value.to_s
+          _value = value.class == Array ? value : value.to_s
+          @fields[name.to_s] = _value
         end
 
         def add_fields(subkey, params = {})
