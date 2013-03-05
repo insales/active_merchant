@@ -12,7 +12,8 @@ require File.dirname(__FILE__) + '/kkb_epay/helper.rb'
 require File.dirname(__FILE__) + '/kkb_epay/notification.rb'
 
 module ActiveMerchant::Billing::Integrations::KkbEpay
-  BANK_CERT = File.read(File.dirname(__FILE__) + '/kkb_epay/kkbca.pem').freeze
+  BANK_CERT_PATH = File.join(File.dirname(__FILE__), 'kkb_epay', 'kkbca.pem').freeze
+  BANK_CERT = File.read(BANK_CERT_PATH).freeze
 
   mattr_accessor :production_url
   mattr_accessor :test_url
@@ -41,7 +42,7 @@ module ActiveMerchant::Billing::Integrations::KkbEpay
     end
 
     def crypt(params)
-      Crypt.new(params.merge(bank_cert: BANK_CERT))
+      Crypt.new({bank_cert: BANK_CERT}.merge params)
     end
   end
 end
