@@ -5,6 +5,12 @@ class ActiveMerchant::Billing::Integrations::KkbEpay::Crypt
   BANK_CONTENT_REGEX = /\A<document.*?>(.+)<bank_sign.*\z/.freeze
   BANK_SIGN_REGEX = /<bank_sign.*?>(.*)<\/bank_sign>/.freeze
 
+  class << self
+    def validate_options(options)
+      new(options).validate_options
+    end
+  end
+
   def initialize(options)
     @options = options
   end
@@ -21,6 +27,21 @@ class ActiveMerchant::Billing::Integrations::KkbEpay::Crypt
 
     digest = OpenSSL::Digest::SHA1.new
     bank_public_key.verify digest, bank_sign_raw, content
+  end
+
+  def validate_options
+    errors = {}
+    begin
+      bank_public_key
+    rescue => e
+      errors[:bank_cert] = e.message
+    end
+    begin
+      private_key
+    rescue => e
+      errors[:private_key] = e.message
+    end
+    errors.empty? ? nil : errors
   end
 
   protected
