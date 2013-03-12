@@ -6,38 +6,38 @@ module ActiveMerchant #:nodoc:
       module PayU
         class Helper < ActiveMerchant::Billing::Integrations::Helper
           # order is significant!
-          mapping :account, 'MERCHANT'
-          mapping :order, 'ORDER_REF'
-          mapping :order_date, 'ORDER_DATE'
-          mapping :order_pname, 'ORDER_PNAME[]'
-          mapping :order_pcode, 'ORDER_PCODE[]'
-          mapping :order_pinfo, 'ORDER_PINFO[]'
-          mapping :amount, 'ORDER_PRICE[]'
-          mapping :order_qty, 'ORDER_QTY[]'
-          mapping :order_vat, 'ORDER_VAT[]'
-          mapping :order_shipping, 'ORDER_SHIPPING'
-          mapping :currency, 'PRICES_CURRENCY'
-          mapping :order_discount, 'DISCOUNT'
-          mapping :pay_method, 'PAY_METHOD'
-          mapping :order_price_type, 'ORDER_PRICE_TYPE[]'
+          mapping :account,           'MERCHANT'
+          mapping :order,             'ORDER_REF'
+          mapping :order_date,        'ORDER_DATE'
+          mapping :order_pname,       'ORDER_PNAME[]'
+          mapping :order_pcode,       'ORDER_PCODE[]'
+          mapping :order_pinfo,       'ORDER_PINFO[]'
+          mapping :amount,            'ORDER_PRICE[]'
+          mapping :order_qty,         'ORDER_QTY[]'
+          mapping :order_vat,         'ORDER_VAT[]'
+          mapping :order_shipping,    'ORDER_SHIPPING'
+          mapping :currency,          'PRICES_CURRENCY'
+          mapping :order_discount,    'DISCOUNT'
+          mapping :pay_method,        'PAY_METHOD'
+          mapping :order_price_type,  'ORDER_PRICE_TYPE[]'
 
-          mapping :bill_fname, 'BILL_FNAME'
-          mapping :bill_lname, 'BILL_LNAME'
-          mapping :bill_email, 'BILL_EMAIL'
-          mapping :bill_phone, 'BILL_PHONE'
-          mapping :bill_countrycode, 'BILL_COUNTRYCODE'
-          mapping :bill_address, 'BILL_ADDRESS'
-          mapping :bill_zipcode, 'BILL_ZIPCODE'
-          mapping :bill_city, 'BILL_CITY'
-          mapping :bill_state, 'BILL_STATE'
+          mapping :bill_fname,        'BILL_FNAME'
+          mapping :bill_lname,        'BILL_LNAME'
+          mapping :bill_email,        'BILL_EMAIL'
+          mapping :bill_phone,        'BILL_PHONE'
+          mapping :bill_countrycode,  'BILL_COUNTRYCODE'
+          mapping :bill_address,      'BILL_ADDRESS'
+          mapping :bill_zipcode,      'BILL_ZIPCODE'
+          mapping :bill_city,         'BILL_CITY'
+          mapping :bill_state,        'BILL_STATE'
 
-          mapping :language, 'LANGUAGE'
-          mapping :testorder, 'TESTORDER'
-          mapping :debug, 'DEBUG'
-          mapping :back_ref, 'BACK_REF'
-          mapping :reccurent, 'LU_ENABLE_TOKEN'
+          mapping :language,          'LANGUAGE'
+          mapping :testorder,         'TESTORDER'
+          mapping :debug,             'DEBUG'
+          mapping :back_ref,          'BACK_REF'
+          mapping :reccuring,         'LU_ENABLE_TOKEN'
 
-          mapping :order_hash, 'ORDER_HASH'
+          mapping :order_hash,        'ORDER_HASH'
 
           attr_accessor :secret_key
 
@@ -69,9 +69,10 @@ module ActiveMerchant #:nodoc:
 
           def order_hash
             values = []
+            fields = form_fields
             FIELDS_FOR_HASH.each { |field|
-              next unless form_fields.include? field
-              val = form_fields[field]
+              next unless fields.include? field
+              val = fields[field]
               val = [val] unless val.is_a? Array
               next if field == 'PAY_METHOD' && val[0].blank?
               values += val.flatten.map &:to_s
