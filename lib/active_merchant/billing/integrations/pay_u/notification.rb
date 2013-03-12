@@ -60,6 +60,10 @@ module ActiveMerchant #:nodoc:
             end
           end
 
+          def recurring?
+            params.key? 'IPN_CC_TOKEN'
+          end
+
           private
             def response_ok
               "<EPAYMENT>#{response_date}|#{response_hash}</EPAYMENT>"
