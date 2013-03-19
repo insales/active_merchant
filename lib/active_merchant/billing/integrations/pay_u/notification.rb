@@ -60,19 +60,19 @@ module ActiveMerchant #:nodoc:
             end
           end
 
+          def response_ok
+            "<EPAYMENT>#{response_date}|#{response_hash}</EPAYMENT>"
+          end
+
+          def response_error
+            "Error occured"
+          end
+
           def recurring?
             params.key? 'IPN_CC_TOKEN'
           end
 
           private
-            def response_ok
-              "<EPAYMENT>#{response_date}|#{response_hash}</EPAYMENT>"
-            end
-
-            def response_error
-              "Error occured"
-            end
-
             def response_date
               @response_date ||= Time.now.strftime "%Y%m%d%H%M%S"
             end
