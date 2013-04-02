@@ -1,4 +1,5 @@
 require 'hmac-md5'
+require 'date'
 
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
@@ -22,10 +23,13 @@ module ActiveMerchant #:nodoc:
 
           FIELDS_FOR_HASH = %w(
             MERCHANT REF_NO EXTERNAL_REF AMOUNT CURRENCY TIMESTAMP METHOD
-          )
+          ).sort
 
           def initialize(order, account, options)
             super order, account
+            options[:timestamp] ||= DateTime.now
+            options[:timestamp] = options[:timestamp].strftime '%Y%m%d%H%M%S' if
+              options[:timestamp].is_a? DateTime
             options.each do |k,v|
               self.send("#{k}=", v)
             end
