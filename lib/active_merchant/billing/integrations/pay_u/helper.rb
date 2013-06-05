@@ -36,6 +36,7 @@ module ActiveMerchant #:nodoc:
           mapping :debug,             'DEBUG'
           mapping :back_ref,          'BACK_REF'
           mapping :recurring,         'LU_ENABLE_TOKEN'
+          mapping :token_type,        'LU_TOKEN_TYPE'
 
           mapping :order_hash,        'ORDER_HASH'
 
