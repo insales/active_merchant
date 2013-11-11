@@ -12,16 +12,39 @@ module ActiveMerchant #:nodoc:
           mapping :description, 'serviceName'
           mapping :email, 'user_email'
 
+          attr_accessor :order_lines
+
           CUSTOM_OPTIONS = Set.new [
             :description,
             :cancel_return_url,
             :return_url,
             :email,
+            :order_lines,
+          ]
+
+          ORDER_LINES_FIELDS = Set.new [
+            :Name,
+            :Description,
+            :TotalPrice,
+            :Count,
           ]
 
           def initialize(order, account, options)
+            options = options.dup
             fields = options.extract!(*CUSTOM_OPTIONS)
-            super.tap { fields.each { |field, value| send "#{field}=", value } }
+            super(order, account, options).tap {
+              fields.each { |field, value| send "#{field}=", value }
+            }
+          end
+
+          def form_fields
+            result = super
+            order_lines.try(:each_with_index) do |line, i|
+              ORDER_LINES_FIELDS.each do |field|
+                result["PurchaseItem_#{i}_#{field}"] = line[field]
+              end
+            end
+            result
           end
         end
       end
