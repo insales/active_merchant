@@ -10,16 +10,18 @@ module ActiveMerchant #:nodoc:
           mapping :return_url, 'successUrl'
           mapping :cancel_return_url, 'failUrl'
           mapping :description, 'serviceName'
+          mapping :email, 'user_email'
 
-          def initialize(account, order, options)
-            @description = options.delete(:description)
-            @cancel_return_url = options.delete(:cancel_return_url)
-            @return_url = options.delete(:return_url)
-            super
-            self.description = @description
-            self.cancel_return_url = @cancel_return_url
-            self.return_url = @return_url
-            self
+          CUSTOM_OPTIONS = Set.new [
+            :description,
+            :cancel_return_url,
+            :return_url,
+            :email,
+          ]
+
+          def initialize(order, account, options)
+            fields = options.extract!(*CUSTOM_OPTIONS)
+            super.tap { fields.each { |field, value| send "#{field}=", value } }
           end
         end
       end
