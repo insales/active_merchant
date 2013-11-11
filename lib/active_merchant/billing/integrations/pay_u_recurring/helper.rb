@@ -1,4 +1,3 @@
-require 'hmac-md5'
 require 'date'
 
 module ActiveMerchant #:nodoc:
