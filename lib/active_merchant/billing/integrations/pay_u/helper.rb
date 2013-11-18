@@ -54,7 +54,6 @@ module ActiveMerchant #:nodoc:
               self.send("#{k}=", v)
             end
             self.order_hash = order_hash
-
             self
           end
 
@@ -69,17 +68,24 @@ module ActiveMerchant #:nodoc:
           end
 
           def order_hash
+            OpenSSL::HMAC.hexdigest OpenSSL::Digest::Digest.new('md5'),
+              secret_key, string_for_hash
+          end
+
+          def values_for_hash
             values = []
             fields = form_fields
             FIELDS_FOR_HASH.each { |field|
               next unless fields.include? field
-              val = fields[field]
-              val = [val] unless val.is_a? Array
+              val = Array fields[field]
               next if field == 'PAY_METHOD' && val[0].blank?
               values += val.flatten.map &:to_s
             }
-            str = values.map { |val| "#{val.bytesize}#{val}" }.join
-            OpenSSL::HMAC.hexdigest OpenSSL::Digest::Digest.new('md5'), secret_key, str
+            values
+          end
+
+          def string_for_hash
+            values_for_hash.map { |val| "#{val.bytesize}#{val}" }.join
           end
         end
       end
