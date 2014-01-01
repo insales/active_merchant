@@ -11,6 +11,7 @@ module ActiveMerchant #:nodoc:
           mapping :cancel_return_url, 'failUrl'
           mapping :description, 'serviceName'
           mapping :email, 'user_email'
+          mapping :due_date, 'DueDate'
 
           attr_accessor :order_lines
 
@@ -20,6 +21,7 @@ module ActiveMerchant #:nodoc:
             :return_url,
             :email,
             :order_lines,
+            :due_date,
           ]
 
           ORDER_LINES_FIELDS = Set.new [
