@@ -54,7 +54,7 @@ module ActiveMerchant #:nodoc:
               val = fields[field].to_s
               "#{val.bytesize}#{val}"
             }.reject(&:nil?).join
-            OpenSSL::HMAC.hexdigest OpenSSL::Digest::Digest.new('md5'), secret_key, str
+            OpenSSL::HMAC.hexdigest OpenSSL::Digest.new('md5'), secret_key, str
           end
         end
       end
