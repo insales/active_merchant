@@ -121,7 +121,7 @@ module ActiveMerchant #:nodoc:
             end
 
             def hash_string_attributes
-              [ originals[:account], originals[:order], CGI.unescape(description), account_purse, originals[:gross],
+              [ originals[:account], originals[:order], description, account_purse, originals[:gross],
                 originals[:currency], status, payer_name, payer_email, received_at, originals[:secret] ]
             end
 
@@ -129,7 +129,7 @@ module ActiveMerchant #:nodoc:
               @raw = post
               for line in post.split('&')
                 key, value = *line.scan( %r{^(\w+)\=(.*)$} ).flatten
-                params[key] = value
+                params[key] = CGI.unescape(value)
               end
             end
         end
