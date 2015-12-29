@@ -16,6 +16,8 @@ require 'yaml'
 require 'json'
 require 'active_merchant'
 require 'comm_stub'
+require 'minitest'
+require 'pry'
 
 require 'active_support/core_ext/integer/time'
 require 'active_support/core_ext/numeric/time'
@@ -60,7 +62,7 @@ end
 
 module ActiveMerchant
   module Assertions
-    AssertionClass = RUBY_VERSION > '1.9' ? MiniTest::Assertion : Test::Unit::AssertionFailedError
+    AssertionClass = RUBY_VERSION > '1.9' ? ::Minitest::Assertion : ::Test::Unit::AssertionFailedError
 
     def assert_field(field, value)
       clean_backtrace do

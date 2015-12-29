@@ -1,3 +1,6 @@
+# encoding: utf-8
+require 'digest/md5'
+
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
@@ -31,16 +34,26 @@ module ActiveMerchant #:nodoc:
             :Count,
           ]
 
+          # userFields never used actually
+          SIGNATURE_FIELDS = %w(eshopId recipientAmount recipientCurrency user_email serviceName orderId userFields)
+
           def initialize(order, account, options)
             options = options.dup
+            @secret_key = options.delete(:secret_key)
             fields = options.extract!(*CUSTOM_OPTIONS)
             super(order, account, options).tap {
               fields.each { |field, value| send "#{field}=", value }
             }
           end
 
+          def signature(fields)
+            s = SIGNATURE_FIELDS.map{|key| fields[key]}.join('::') + "::#{@secret_key}" # Seriously, fuck this shit
+            Digest::MD5.hexdigest(s)
+          end
+
           def form_fields
             result = super
+            result['hash'] = signature(result)
             order_lines.try(:each_with_index) do |line, i|
               ORDER_LINES_FIELDS.each do |field|
                 result["PurchaseItem_#{i}_#{field}"] = line[field]

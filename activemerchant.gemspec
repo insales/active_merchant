@@ -30,6 +30,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency('mocha', '~> 0.11.3')
   s.add_development_dependency('rails', '>= 2.3.14')
   s.add_development_dependency('thor')
+  s.add_development_dependency('test-unit')
+  s.add_development_dependency('minitest')
+  s.add_development_dependency('pry')
   s.signing_key = ENV['GEM_PRIVATE_KEY']
   s.cert_chain  = ['gem-public_cert.pem']
 end
