@@ -29,13 +29,19 @@ namespace :test do
     t.verbose = true
   end
 
+  Rake::TestTask.new('units:pattern') do |t|
+    t.pattern = "test/unit/**/*#{ENV['pattern']}*.rb"
+    t.ruby_opts << '-rubygems'
+    t.libs << 'test'
+    t.verbose = true
+  end
+
   Rake::TestTask.new(:remote) do |t|
     t.pattern = 'test/remote/**/*_test.rb'
     t.ruby_opts << '-rubygems'
     t.libs << 'test'
     t.verbose = true
   end
-
 end
 
 desc "Delete tar.gz / zip"
