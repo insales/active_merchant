@@ -107,10 +107,10 @@ module ActiveMerchant #:nodoc:
           private
           
           def checkout_language_from_country(country_code)
-            country    = Country.find(country_code)
+            country    = ActiveUtils::Country.find(country_code)
             short_code = country.code(:alpha2).to_s
             LANG_FOR_COUNTRY[short_code]
-          rescue InvalidCountryCodeError
+          rescue ActiveUtils::InvalidCountryCodeError
             'EN'
           end
         end

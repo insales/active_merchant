@@ -27,6 +27,7 @@ namespace :test do
     t.ruby_opts << '-rubygems'
     t.libs << 'test'
     t.verbose = true
+    t.warning = false
   end
 
   Rake::TestTask.new('units:pattern') do |t|

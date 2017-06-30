@@ -266,7 +266,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def lookup_country_code(code)
-        country = Country.find(code) rescue nil
+        country = ActiveUtils::Country.find(code) rescue nil
         country && country.code(:alpha3)
       end
     end

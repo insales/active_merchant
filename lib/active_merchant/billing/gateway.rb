@@ -56,8 +56,8 @@ module ActiveMerchant #:nodoc:
     # See the {ActiveMerchant Guide to Contributing}[https://github.com/Shopify/active_merchant/wiki/Contributing]
     #
     class Gateway
-      include PostsData
-      include RequiresParameters
+      include ActiveUtils::PostsData
+      include ActiveUtils::RequiresParameters
       include CreditCardFormatting
       include Utils
 

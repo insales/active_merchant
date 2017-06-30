@@ -1407,7 +1407,7 @@ module ActiveMerchant #:nodoc:
 
         begin
           soap = ssl_post(url, request, "Content-Type" => "text/xml")
-        rescue ActiveMerchant::ResponseError => error
+        rescue ActiveUtils::ResponseError => error
           soap = error.response.body
         end
 

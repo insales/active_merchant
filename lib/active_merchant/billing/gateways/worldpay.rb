@@ -237,7 +237,7 @@ module ActiveMerchant #:nodoc:
           raw,
           :authorization => authorization_from(raw),
           :test => test?)
-      rescue ActiveMerchant::ResponseError => e
+      rescue ActiveUtils::ResponseError => e
         if e.response.code.to_s == "401"
           return Response.new(false, "Invalid credentials", {}, :test => test?)
         else

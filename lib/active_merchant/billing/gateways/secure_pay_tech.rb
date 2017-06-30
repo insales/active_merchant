@@ -1,7 +1,7 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class SecurePayTechGateway < Gateway
-      class SecurePayTechPostData < PostData
+      class SecurePayTechPostData < ActiveUtils::PostData
         self.required_fields = [ :OrderReference, :CardNumber, :CardExpiry, :CardHolderName, :CardType, :MerchantID, :MerchantKey, :Amount, :Currency ]
       end
 

@@ -363,13 +363,15 @@ module ActiveMerchant #:nodoc:
           if method == :get
             raw_response = ssl_get(LIVE_URL + url, headers(meta))
           else
+            puts '!' * 50
+            puts post_data(parameters)
             raw_response = ssl_request(method,
                                        LIVE_URL + url,
                                        post_data(parameters),
                                        headers(meta))
           end
           parse(raw_response)
-        rescue ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           raw_response = e.response.body
           response_error(raw_response)
         rescue JSON::ParserError

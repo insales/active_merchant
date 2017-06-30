@@ -1,7 +1,7 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class FirstPayGateway < Gateway
-      class FirstPayPostData < PostData
+      class FirstPayPostData < ActiveUtils::PostData
         # Fields that will be sent even if they are blank
         self.required_fields = [ :action, :amount, :trackid ]
       end

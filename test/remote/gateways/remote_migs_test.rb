@@ -92,7 +92,8 @@ class RemoteMigsTest < Test::Unit::TestCase
 
   private
 
-  include ActiveMerchant::PostsData
+  include ActiveUtils::PostsData
+
   def assert_response_contains(text, url)
     response = https_response(url)
     assert response.body.include?(text)

@@ -5,7 +5,7 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module EPaymentPlans
         class Notification < ActiveMerchant::Billing::Integrations::Notification
-          include ActiveMerchant::PostsData
+          include ActiveUtils::PostsData
           def complete?
             status == "Completed"
           end

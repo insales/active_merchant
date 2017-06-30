@@ -5,7 +5,7 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Valitor
         class Helper < ActiveMerchant::Billing::Integrations::Helper
-          include RequiresParameters
+          include ActiveUtils::RequiresParameters
           
           DEFAULT_SUCCESS_TEXT = "The transaction has been completed."
           

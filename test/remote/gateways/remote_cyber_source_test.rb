@@ -186,7 +186,7 @@ class RemoteCyberSourceTest < Test::Unit::TestCase
 
   def test_invalid_login
     gateway = CyberSourceGateway.new( :login => '', :password => '' )
-    authentication_exception = assert_raise ActiveMerchant::ResponseError, 'Failed with 500 Internal Server Error' do
+    authentication_exception = assert_raise ActiveUtils::ResponseError, 'Failed with 500 Internal Server Error' do
       gateway.purchase(@amount, @credit_card, @options)
     end
     assert response = authentication_exception.response

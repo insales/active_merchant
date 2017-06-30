@@ -19,6 +19,9 @@ require 'comm_stub'
 require 'minitest'
 require 'pry'
 
+require 'mocha/test_unit'
+require 'mocha/mini_test'
+
 require 'active_support/core_ext/integer/time'
 require 'active_support/core_ext/numeric/time'
 require 'active_support/core_ext/hash/slice'

@@ -206,7 +206,7 @@ module ActiveMerchant #:nodoc:
           :avs_result => avs_result_from(raw),
           :cvv_result => cvv_result_from(raw)
         )
-      rescue ActiveMerchant::ResponseError => e
+      rescue ActiveUtils::ResponseError => e
         return EwayRapidResponse.new(false, e.response.message, {:status_code => e.response.code}, :test => test?)
       end
 

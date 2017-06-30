@@ -137,7 +137,7 @@ module ActiveMerchant #:nodoc:
         xml.tag! 'CustomerDetails' do
           if address
             unless address[:country].blank?
-              country_code = Country.find(address[:country]).code(:numeric)
+              country_code = ActiveUtils::Country.find(address[:country]).code(:numeric)
             end
             xml.tag! 'BillingAddress' do
               xml.tag! 'Address1', address[:address1]

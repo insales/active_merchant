@@ -300,7 +300,7 @@ module ActiveMerchant #:nodoc:
                    "SOAPAction"   => soap_action(action, v4)
                  )
           response = parse(action, data)
-        rescue ActiveMerchant::ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           response = parse_error(e.response)
         end
 

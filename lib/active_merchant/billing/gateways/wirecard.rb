@@ -115,7 +115,7 @@ module ActiveMerchant #:nodoc:
           :avs_result => { :code => response[:avsCode] },
           :cvv_result => response[:cvCode]
         )
-      rescue ResponseError => e
+      rescue ActiveUtils::ResponseError => e
         if e.response.code == "401"
           return Response.new(false, "Invalid Login")
         else

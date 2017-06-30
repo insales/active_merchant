@@ -33,7 +33,7 @@ module ActiveMerchant #:nodoc:
         # end
 
         class Helper < ActiveMerchant::Billing::Integrations::Helper
-          include PostsData
+          include ActiveUtils::PostsData
           mapping :account, 'PxPayUserId'
           mapping :credential2, 'PxPayKey'
           mapping :currency, 'CurrencyInput'

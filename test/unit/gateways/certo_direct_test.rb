@@ -40,7 +40,7 @@ class CertoDirectTest < Test::Unit::TestCase
     http_response = mock()
     http_response.stubs(:code).returns('403')
     http_response.stubs(:body).returns(failed_authorization_response)
-    response_error = ::ActiveMerchant::ResponseError.new(http_response)
+    response_error = ::ActiveUtils::ResponseError.new(http_response)
     @gateway.expects(:ssl_post).raises(response_error)
 
     assert response = @gateway.purchase(@amount, @credit_card, @options)
@@ -53,10 +53,10 @@ class CertoDirectTest < Test::Unit::TestCase
   def test_communication_error
     http_response = mock()
     http_response.stubs(:code).returns('408')
-    response_error = ::ActiveMerchant::ResponseError.new(http_response)
+    response_error = ::ActiveUtils::ResponseError.new(http_response)
     @gateway.expects(:ssl_post).raises(response_error)
 
-    assert_raise(ActiveMerchant::ResponseError) do
+    assert_raise(ActiveUtils::ResponseError) do
       @gateway.purchase(@amount, @credit_card, @options)
     end
   end

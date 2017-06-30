@@ -115,7 +115,7 @@ module ActiveMerchant #:nodoc:
                        response,
                        :test          => test?,
                        :authorization => authorization(response))
-        rescue ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           raise e unless e.response.code == '403'
           response = Hash.from_xml(e.response.body)['response']
           Response.new(false, message(response), {}, :test => test?)

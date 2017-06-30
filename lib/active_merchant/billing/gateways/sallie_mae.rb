@@ -25,7 +25,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def authorize(money, creditcard, options = {})
-        post = PostData.new
+        post = ActiveUtils::PostData.new
         add_invoice(post, options)
         add_creditcard(post, creditcard)
         add_address(post, creditcard, options)
@@ -35,7 +35,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def purchase(money, creditcard, options = {})
-        post = PostData.new
+        post = ActiveUtils::PostData.new
         add_invoice(post, options)
         add_creditcard(post, creditcard)
         add_address(post, creditcard, options)
@@ -45,7 +45,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def capture(money, authorization, options = {})
-        post = PostData.new
+        post = ActiveUtils::PostData.new
         post[:postonly] = authorization
         commit(:capture, money, post)
       end

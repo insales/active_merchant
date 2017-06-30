@@ -4,8 +4,8 @@ module ActiveMerchant #:nodoc:
 
       module Pxpay
         class Notification < ActiveMerchant::Billing::Integrations::Notification
-          include PostsData
-          include RequiresParameters
+          include ActiveUtils::PostsData
+          include ActiveUtils::RequiresParameters
 
           def initialize(query_string, options={})
             # PxPay appends ?result=...&userid=... to whatever return_url was specified, even if that URL ended with a ?query.

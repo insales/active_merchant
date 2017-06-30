@@ -95,7 +95,7 @@ module ActiveMerchant #:nodoc:
           raw_response = ssl_request(method, get_url(uri), parameters.to_json, headers)
           response = parse(raw_response)
           success = response["successful"] && (response["response"]["successful"] || response["response"]["token"])
-        rescue ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           if e.response.code == "401"
             return Response.new(false, "Invalid Login")
           end

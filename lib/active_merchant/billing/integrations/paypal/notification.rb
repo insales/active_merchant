@@ -47,7 +47,7 @@ module ActiveMerchant #:nodoc:
         #     end
         #   end
         class Notification < ActiveMerchant::Billing::Integrations::Notification
-          include PostsData
+          include ActiveUtils::PostsData
 
           def initialize(post, options = {})
             super

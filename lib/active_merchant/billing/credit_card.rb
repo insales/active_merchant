@@ -48,7 +48,7 @@ module ActiveMerchant #:nodoc:
     #
     class CreditCard
       include CreditCardMethods
-      include Validateable
+      include ActiveUtils::Validateable
 
       cattr_accessor :require_verification_value
       self.require_verification_value = true

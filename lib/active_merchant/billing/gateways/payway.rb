@@ -196,7 +196,7 @@ module ActiveMerchant
           :test => (@options[:merchant].to_s == "TEST"),
           :authorization => post[:order_number]
         )
-      rescue ActiveMerchant::ResponseError => e
+      rescue ActiveUtils::ResponseError => e
         raise unless e.response.code == '403'
         return Response.new(false, "Invalid credentials", {}, :test => test?)
       rescue ActiveMerchant::ClientCertificateError

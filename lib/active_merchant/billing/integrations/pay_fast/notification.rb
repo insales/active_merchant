@@ -40,7 +40,7 @@ module ActiveMerchant #:nodoc:
         #     end
         #   end
         class Notification < ActiveMerchant::Billing::Integrations::Notification
-          include PostsData
+          include ActiveUtils::PostsData
           include Common
 
           # Was the transaction complete?

@@ -20,14 +20,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency('activesupport', '>= 2.3.14')
   s.add_dependency('i18n')
-  s.add_dependency('money', '~> 6.5.0')
+  s.add_dependency('money', '~> 6.8.0')
   s.add_dependency('builder', '>= 2.0.0')
   s.add_dependency('json', '>= 1.5.1')
-  s.add_dependency('active_utils', '~> 2')
-  s.add_dependency('nokogiri')
+  s.add_dependency('active_utils',  '~> 3.0.0')
+  s.add_dependency('nokogiri', '~> 1.5.0')
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('mocha', '~> 0.11.3')
+  s.add_development_dependency('mocha')
   s.add_development_dependency('rails', '>= 2.3.14')
   s.add_development_dependency('thor')
   s.add_development_dependency('test-unit')

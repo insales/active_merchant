@@ -3,7 +3,7 @@ require 'rexml/document'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class VerifiGateway < Gateway
-      class VerifiPostData < PostData
+      class VerifiPostData < ActiveUtils::PostData
         # Fields that will be sent even if they are blank
         self.required_fields = [ :amount, :type, :ccnumber, :ccexp, :firstname, :lastname,
           :company, :address1, :address2, :city, :state, :zip, :country, :phone ]

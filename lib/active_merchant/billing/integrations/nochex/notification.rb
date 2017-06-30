@@ -7,7 +7,7 @@ module ActiveMerchant #:nodoc:
       module Nochex
         # Parser and handler for incoming Automatic Payment Confirmations from Nochex.
         class Notification < ActiveMerchant::Billing::Integrations::Notification
-          include ActiveMerchant::PostsData
+          include ActiveUtils::PostsData
 
           def complete?
             status == 'Completed'

@@ -200,7 +200,7 @@ module ActiveMerchant #:nodoc:
           raw_response = ssl_request(method, self.live_url + url, post_data(parameters), headers(meta))
           response = parse(raw_response)
           success = !response.key?("error")
-        rescue ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           raw_response = e.response.body
           response = response_error(raw_response)
         rescue JSON::ParserError

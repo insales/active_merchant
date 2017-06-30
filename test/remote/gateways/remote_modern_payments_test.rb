@@ -49,7 +49,7 @@ class RemoteModernPaymentTest < Test::Unit::TestCase
                 :password => ''
               )
               
-    assert_raises(ActiveMerchant::ResponseError) do
+    assert_raises(ActiveUtils::ResponseError) do
       gateway.purchase(@amount, @credit_card, @options)
     end
   end

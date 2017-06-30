@@ -478,7 +478,7 @@ module ActiveMerchant #:nodoc:
           when 200...300
             response.body
           else
-            raise ResponseError.new(response)
+            raise ActiveUtils::ResponseError.new(response)
           end
         end
       end

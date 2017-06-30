@@ -147,7 +147,7 @@ module ActiveMerchant #:nodoc:
         url = (test? ? self.test_url : self.live_url)
         begin
           response = parse(ssl_post(url, build_request(action, request), POST_HEADERS))
-        rescue ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           response = parse_error(e.response)
         end
 

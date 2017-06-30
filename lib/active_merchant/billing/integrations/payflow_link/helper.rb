@@ -3,7 +3,7 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module PayflowLink
         class Helper < ActiveMerchant::Billing::Integrations::Helper
-          include PostsData
+          include ActiveUtils::PostsData
 
           def initialize(order, account, options = {})
             super

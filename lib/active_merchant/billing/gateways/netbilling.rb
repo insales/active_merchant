@@ -151,7 +151,7 @@ module ActiveMerchant #:nodoc:
           :avs_result => { :code => response[:avs_code]},
           :cvv_result => response[:cvv2_code]
         )
-      rescue ActiveMerchant::ResponseError => e
+      rescue ActiveUtils::ResponseError => e
         raise unless(e.response.code =~ /^[67]\d\d$/)
         return Response.new(false, e.response.message, {:status_code => e.response.code}, :test => test?)
       end

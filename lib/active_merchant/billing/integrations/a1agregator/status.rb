@@ -4,7 +4,7 @@ module ActiveMerchant #:nodoc:
       module A1agregator
 
         class Status
-          include PostsData
+          include ActiveUtils::PostsData
 
           STATUS_TEST_URL = 'https://partner.a1pay.ru/a1lite/info/'
 
@@ -18,7 +18,7 @@ module ActiveMerchant #:nodoc:
           # by tid - transaction id
           # by order_id & service_id
           def update(options = {})
-            data = PostData.new
+            data = ActiveUtils::PostData.new
             data[:user] = @login
             data[:pass] = @password
             if options[:tid]

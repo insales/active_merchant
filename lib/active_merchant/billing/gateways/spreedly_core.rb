@@ -204,7 +204,7 @@ module ActiveMerchant #:nodoc:
       def commit(relative_url, request, method = :post, authorization_field = :token)
         begin
           raw_response = ssl_request(method, "#{live_url}/#{relative_url}", request, headers)
-        rescue ResponseError => e
+        rescue ActiveUtils::ResponseError => e
           raw_response = e.response.body
         end
 

@@ -25,7 +25,7 @@ class NetpayTest < Test::Unit::TestCase
 
   def test_response_handler_failure
     response = Struct.new(:code).new(400)
-    assert_raise ActiveMerchant::ResponseError do
+    assert_raise ActiveUtils::ResponseError do
       @gateway.send(:handle_response, response)
     end
   end

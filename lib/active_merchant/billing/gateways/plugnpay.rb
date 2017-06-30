@@ -1,7 +1,7 @@
 module ActiveMerchant
   module Billing
     class PlugnpayGateway < Gateway
-      class PlugnpayPostData < PostData
+      class PlugnpayPostData < ActiveUtils::PostData
         # Fields that will be sent even if they are blank
         self.required_fields = [ :publisher_name, :publisher_password,
           :card_amount, :card_name, :card_number, :card_exp, :orderID ]

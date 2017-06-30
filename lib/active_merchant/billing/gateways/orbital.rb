@@ -302,7 +302,7 @@ module ActiveMerchant #:nodoc:
         # Failover URL will be attempted in the event of a connection error
         response = begin
           request.call(remote_url)
-        rescue ConnectionError
+        rescue ActiveUtils::ConnectionError
           request.call(remote_url(:secondary))
         end
 

@@ -31,7 +31,7 @@ class MerchantWareTest < Test::Unit::TestCase
 
   def test_soap_fault_during_authorization
     response_500 = stub(:code => "500", :message => "Internal Server Error", :body => fault_authorization_response)
-    @gateway.expects(:ssl_post).raises(ActiveMerchant::ResponseError.new(response_500))
+    @gateway.expects(:ssl_post).raises(ActiveUtils::ResponseError.new(response_500))
 
     assert response = @gateway.authorize(@amount, @credit_card, @options)
     assert_instance_of Response, response

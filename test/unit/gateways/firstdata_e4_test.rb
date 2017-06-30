@@ -352,7 +352,7 @@ Please retain this copy for your records.
 
   def no_transaction_response
     yamlexcep = <<-RESPONSE
---- !ruby/exception:ActiveMerchant::ResponseError
+--- !ruby/exception:ActiveUtils::ResponseError
 message: Failed with 400 Bad Request
 message:
 response: !ruby/object:Net::HTTPBadRequest
