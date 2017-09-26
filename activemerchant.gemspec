@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency('builder', '>= 2.0.0')
   s.add_dependency('json', '>= 1.5.1')
   s.add_dependency('active_utils',  '~> 3.0.0')
-  s.add_dependency('nokogiri', '~> 1.5.0')
+  s.add_dependency('nokogiri', '~> 1.8.1')
 
   s.add_development_dependency('rake')
   s.add_development_dependency('mocha')
