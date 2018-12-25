@@ -12,7 +12,7 @@ require 'rake'
 require 'rake/testtask'
 require 'rubygems/package_task'
 require 'support/gateway_support'
-require 'support/ssl_verify' 
+require 'support/ssl_verify'
 require 'support/outbound_hosts'
 
 desc "Run the unit test suite"
@@ -24,7 +24,6 @@ namespace :test do
 
   Rake::TestTask.new(:units) do |t|
     t.pattern = 'test/unit/**/*_test.rb'
-    t.ruby_opts << '-rubygems'
     t.libs << 'test'
     t.verbose = true
     t.warning = false
@@ -32,14 +31,12 @@ namespace :test do
 
   Rake::TestTask.new('units:pattern') do |t|
     t.pattern = "test/unit/**/*#{ENV['pattern']}*.rb"
-    t.ruby_opts << '-rubygems'
     t.libs << 'test'
     t.verbose = true
   end
 
   Rake::TestTask.new(:remote) do |t|
     t.pattern = 'test/remote/**/*_test.rb'
-    t.ruby_opts << '-rubygems'
     t.libs << 'test'
     t.verbose = true
   end
@@ -72,34 +69,34 @@ namespace :gateways do
     support = GatewaySupport.new
     support.to_s
   end
-  
+
   namespace :print do
     desc 'Print the currently supported gateways in RDoc format'
     task :rdoc do
       support = GatewaySupport.new
       support.to_rdoc
     end
-  
+
     desc 'Print the currently supported gateways in Textile format'
     task :textile do
       support = GatewaySupport.new
       support.to_textile
     end
-    
+
     desc 'Print the gateway functionality supported by each gateway'
     task :features do
       support = GatewaySupport.new
       support.features
     end
   end
-  
+
   desc 'Print the list of destination hosts with port'
   task :hosts do
     OutboundHosts.list
   end
- 
+
   desc 'Test that gateways allow SSL verify_peer'
   task :ssl_verify do
     SSLVerify.new.test_gateways
-  end 
+  end
 end
