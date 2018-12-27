@@ -20,7 +20,7 @@ require 'minitest'
 require 'pry'
 
 require 'mocha/test_unit'
-require 'mocha/mini_test'
+require 'mocha/minitest'
 
 require 'active_support/core_ext/integer/time'
 require 'active_support/core_ext/numeric/time'
@@ -38,7 +38,7 @@ rescue LoadError
 end
 
 require 'action_controller'
-require "action_view/template"
+require 'action_view'
 begin
   require 'active_support/core_ext/module/deprecation'
   require 'action_dispatch/testing/test_process'
