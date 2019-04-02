@@ -14,7 +14,7 @@ class EasyPayNotificationTest < Test::Unit::TestCase
   end
 
   def test_compositions
-    assert_equal BigDecimal.new("100"), @easypay.amount
+    assert_equal 100.to_d, @easypay.amount
   end
 
   def test_credential2_required
