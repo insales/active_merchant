@@ -66,7 +66,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def amount
-            BigDecimal.new(gross)
+            gross.to_d
           end
 
           def gross
@@ -132,7 +132,7 @@ module ActiveMerchant #:nodoc:
               @raw = post
               for line in post.split('&')
                 key, value = *line.scan( %r{^(\w+)\=(.*)$} ).flatten
-                params[key] = CGI.unescape(value) 
+                params[key] = CGI.unescape(value)
               end
             end
         end

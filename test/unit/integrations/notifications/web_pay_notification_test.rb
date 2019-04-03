@@ -14,7 +14,7 @@ class WebPayNotificationTest < Test::Unit::TestCase
   end
 
   def test_compositions
-    assert_equal BigDecimal.new("500"), @web_pay.amount
+    assert_equal 500.to_d, @web_pay.amount
   end
 
   def test_respond_to_acknowledge

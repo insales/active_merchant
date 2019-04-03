@@ -14,7 +14,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def amount
-            BigDecimal.new(gross)
+            gross.to_d
           end
 
           def item_id
