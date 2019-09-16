@@ -1,5 +1,3 @@
-require 'hmac-md5'
-
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:

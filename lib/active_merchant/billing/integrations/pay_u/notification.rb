@@ -1,5 +1,3 @@
-require 'hmac-md5'
-
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
@@ -108,9 +106,7 @@ module ActiveMerchant #:nodoc:
                 str << "#{val.bytesize}#{val}"
               end
 
-              hmac = HMAC::MD5.new(secret_key)
-              hmac.update(str)
-              hmac.to_s
+              OpenSSL::HMAC.hexdigest OpenSSL::Digest.new('md5'), secret_key, str
             end
 
             def parse(post)
