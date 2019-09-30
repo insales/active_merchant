@@ -84,8 +84,8 @@ module ActiveMerchant #:nodoc:
             end
 
             def request_hash
+              return @request_hash if @request_hash
               values = []
-              Rails.logger.info("[PAYU] POST_DATA #{post_data.inspect}")
               post_data.split('&').each do |param|
                 k, v = param.split('=')
                 next if k == 'HASH'
@@ -96,7 +96,9 @@ module ActiveMerchant #:nodoc:
             end
 
             def hash_valid?
-              hash == request_hash
+              return true if hash == request_hash
+              Rails.logger.error("[PAYU] wrong hash #{hash} != #{request_hash}, POST_DATA #{post_data.inspect}")
+              false
             end
 
             def generate_hash(*args)
