@@ -89,7 +89,7 @@ module ActiveMerchant #:nodoc:
               post_data.split('&').each do |param|
                 k, v = param.split('=')
                 next if k == 'HASH'
-                values << CGI.unescape(v.to_s)
+                values << v.to_s
               end
 
               @request_hash ||= generate_hash(*values)
